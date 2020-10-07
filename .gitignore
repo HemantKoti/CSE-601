@@ -1,3 +1,9 @@
+#Ignore desktop.ini files
+*.ini
+
+#Unwanted files
+Demo_schedule.xlsx
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
