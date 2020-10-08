@@ -103,13 +103,12 @@ def asso_rule_template1(query, generatedrules):
         for item in itemset:
             queryfilter = ~result[rule].str.contains(item)
             result = result[queryfilter]
-    elif (int(count) == 1):
-        for item in itemset:
-            queryfilter = generatedrules[generatedrules[rule].str.contains(item)]
-            result = result.append(queryfilter)
-        for item in [set(k) for k in list(itertools.combinations(itemset, 2))]:
-            queryfilter = ~result[rule.lower()].str.contains(str(item))
-            result = result[queryfilter]
+    elif (count.isdigit()):
+        for index, _rule in generatedrules.iterrows():
+            ruleset = eval(_rule[rule])
+            intersect = set(itemset).intersection(ruleset)
+            if (len(intersect) == int(count)):
+                result.loc[len(result)] = _rule
 
     return result.drop_duplicates()
 
