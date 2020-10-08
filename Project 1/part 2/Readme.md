@@ -6,7 +6,7 @@
 
 ## Running the project on the command line
 
-Open the command prompt and run the following command
+Open the command prompt from your project folder and run the following command.
 
 python data_mining_project_1_part_2.py --filepath <i><path_to_file></i> --support <i><support_value></i> --confidence <i><confidence_value></i>
 
