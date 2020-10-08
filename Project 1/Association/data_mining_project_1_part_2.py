@@ -77,7 +77,7 @@ def generateRules(frequent_items_dict, k, minconfidence):
             for i in range(len(frequentitem) - 1):
                 for subset in [set(k) for k in list(itertools.combinations(frequentitem, i + 1))]:
                     confidence = frequent_items_dict[str(set(sorted(list(frequentitem))))]/frequent_items_dict[str(set(sorted(list(frequentitem.difference(subset)))))]
-                    if(confidence > minconfidence):
+                    if(confidence >= minconfidence):
                         generatedrules.loc[len(generatedrules)] = pd.Series({'rule': str(frequentitem).upper(), 'body': str(subset).upper(), 
                         'head': str(frequentitem.difference(subset)).upper(), 'confidence': confidence})
 
@@ -92,7 +92,6 @@ def asso_rule_template1(query, generatedrules):
     itemset = [i.strip() for i in itemset.split(',')]
 
     print('Template 1 query:', rule, count, itemset)
-
     rule = rule.lower()
     if (count == "ANY"):
         for item in itemset:
@@ -119,10 +118,11 @@ def asso_rule_template2(query, generatedrules):
     count = int(count)
 
     print('Template 2 query:', rule, count)
-
+    rule = rule.lower()
+    
     for i in range(len(generatedrules)):
         if ((rule == "RULE" and len(eval(generatedrules['body'].iloc[i])) + len(eval(generatedrules['head'].iloc[i])) >= count)
-            or (len(eval(generatedrules[rule.lower()].iloc[i])) >= count)):
+            or (len(eval(generatedrules[rule].iloc[i])) >= count)):
              result = result.append(generatedrules.iloc[i])
 
     return result.drop_duplicates()

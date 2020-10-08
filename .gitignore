@@ -1,3 +1,5 @@
+# Ignore unwanted files
+Submission date.png
 .vscode
 
 # Ignore desktop.ini files
