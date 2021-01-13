@@ -1,6 +1,8 @@
 # Ignore unwanted files
 Submission date.png
 .vscode
+MS Project Hemant Koti.pdf
+.vs
 
 # Ignore desktop.ini files
 *.ini
